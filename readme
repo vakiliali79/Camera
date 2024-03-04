@@ -6,24 +6,8 @@ This is a simple Android application written in Kotlin that allows users to capt
 
 - **Capture Photo:** Press the "Capture Photo" button on the home screen to access the camera and take a photo.
 - **Save Photo:** The captured photo is automatically saved in the "Downloads/PhotoCapture" directory.
-- **View Captured Photos:** The home screen displays a list of all the captured photos with a thumbnail and the date/time of capture.
+- **View Captured Photos:** The gallery displays a list of all the captured photos with a thumbnail and the date/time of capture.
 
-## Project Structure
-
-The project follows the MVVM (Model-View-ViewModel) architecture to ensure separation of concerns and maintainability. Here's a brief overview of the project structure:
-
-- **`app` Module:** Contains the main application code.
-  - `src/main/java/com/example/photocapture`:
-    - `data`: Handles data-related operations.
-      - `PhotoRepository.kt`: Manages the logic for saving and retrieving photos.
-    - `model`: Defines data models.
-      - `Photo.kt`: Represents a captured photo.
-    - `ui`: Handles the user interface components.
-      - `MainActivity.kt`: The main activity with the capture button and photo list.
-      - `PhotoAdapter.kt`: RecyclerView adapter for displaying the list of captured photos.
-      - `PhotoViewModel.kt`: ViewModel to manage data for the `MainActivity`.
-    - `util`: Utility classes.
-      - `FileUtils.kt`: Handles file operations for saving photos.
 
 ## Usage
 
