@@ -1,0 +1,53 @@
+# PhotoCapture App
+
+This is a simple Android application written in Kotlin that allows users to capture photos, save them in a specified directory within the Downloads folder, and display the captured images on the main screen.
+
+## Features
+
+- **Capture Photo:** Press the "Capture Photo" button on the home screen to access the camera and take a photo.
+- **Save Photo:** The captured photo is automatically saved in the "Downloads/PhotoCapture" directory.
+- **View Captured Photos:** The home screen displays a list of all the captured photos with a thumbnail and the date/time of capture.
+
+## Project Structure
+
+The project follows the MVVM (Model-View-ViewModel) architecture to ensure separation of concerns and maintainability. Here's a brief overview of the project structure:
+
+- **`app` Module:** Contains the main application code.
+  - `src/main/java/com/example/photocapture`:
+    - `data`: Handles data-related operations.
+      - `PhotoRepository.kt`: Manages the logic for saving and retrieving photos.
+    - `model`: Defines data models.
+      - `Photo.kt`: Represents a captured photo.
+    - `ui`: Handles the user interface components.
+      - `MainActivity.kt`: The main activity with the capture button and photo list.
+      - `PhotoAdapter.kt`: RecyclerView adapter for displaying the list of captured photos.
+      - `PhotoViewModel.kt`: ViewModel to manage data for the `MainActivity`.
+    - `util`: Utility classes.
+      - `FileUtils.kt`: Handles file operations for saving photos.
+
+## Usage
+
+#Installation
+
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/vakiliali79/Camera.git
+```
+
+2. Open the project in Android Studio.
+
+3. Run the app on an emulator or a physical device.
+
+4. Press the "Capture Photo" button to take a photo.
+
+5. Captured photos will be saved in the "Downloads/PhotoCapture" directory.
+
+## Permissions
+
+This app does not request camera or storage permissions explicitly, as it aims to demonstrate capturing photos without permission requests. Note that this approach may not be suitable for production applications.
+
+---
+
+Feel free to customize this README based on your project's specific details and requirements.
