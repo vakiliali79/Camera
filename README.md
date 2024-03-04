@@ -8,10 +8,12 @@ This is a simple Android application written in Kotlin that allows users to capt
 - **Save Photo:** The captured photo is automatically saved in the "Downloads/PhotoCapture" directory.
 - **View Captured Photos:** The gallery displays a list of all the captured photos with a thumbnail and the date/time of capture.
 
+## Installation
+
+[Download APK](https://raw.githubusercontent.com/vakiliali79/Camera/master/Camera.apk)
+
 
 ## Usage
-
-#Installation
 
 
 1. Clone the repository:
