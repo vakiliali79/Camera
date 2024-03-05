@@ -2,16 +2,17 @@ package ava.vakiliali79.solo
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ava.vakiliali79.solo.databinding.ActivityMainBinding
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         // Set up the RecyclerView
-        binding.showImageRecyclerView.layoutManager = GridLayoutManager(this, 3)
+        binding.showImageRecyclerView.layoutManager = GridLayoutManager(this, 3,
+            RecyclerView.VERTICAL, false)
+
         viewModel.photos.observe(this) { photos ->
             // Update RecyclerView with the list of photos
             val adapter = PhotoAdapter(photos)
@@ -59,8 +62,17 @@ class MainActivity : AppCompatActivity() {
             imageBitmap?.let {
                 photoFile = saveBitmap(it)
                 viewModel.addPhoto(photoFile)
+                viewModel.saveBitmap(it)
+                notifyGallery(photoFile)
             }
         }
+    }
+
+    // Notify the gallery about the new photo
+    private fun notifyGallery(photoFile: File) {
+        val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+        mediaScanIntent.data = Uri.fromFile(photoFile)
+        sendBroadcast(mediaScanIntent)
     }
 
     // Save the bitmap to a file with a timestamp in the app's external files directory
@@ -75,16 +87,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val imageFile = File(directory, "JPEG_${timeStamp}.jpg")
+        val outputStream: OutputStream = FileOutputStream(imageFile)
 
-        try {
-            // Save the bitmap to the directory
-            val outputStream: OutputStream = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            outputStream.flush()
-            outputStream.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
 
         return imageFile
     }

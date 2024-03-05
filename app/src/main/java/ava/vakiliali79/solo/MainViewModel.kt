@@ -2,7 +2,6 @@ package ava.vakiliali79.solo
 
 import android.app.Application
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Environment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -10,6 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -38,32 +41,31 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val currentPhotos = _photos.value.orEmpty().toMutableList()
         currentPhotos.add(photo)
         _photos.value = currentPhotos.reversed()
-
-        // Save the new list to storage
-        savePhotosToStorage(currentPhotos)
     }
 
-    // Save the list of photos to storage in JPG format
-    private fun savePhotosToStorage(photosList: List<File>) {
-        // Save the list of photos to storage in JPG format
-        // You may want to implement logic to save them in a specific order if needed
-        // This is just a basic example
-        storageDir.mkdirs()
-        photosList.forEachIndexed { index, file ->
-            convertBitmapToJPG(file, file)
+    // Save the bitmap to a file with a timestamp in the app's external files directory
+    fun saveBitmap(bitmap: Bitmap): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+
+        // Save a copy of the image to the Downloads/Captured photos directory
+        val downloadDirectoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
+        val directory = File("$downloadDirectoryPath/Captured photos")
+        if (!directory.exists()) {
+            directory.mkdirs()
         }
-    }
 
-    // Convert a bitmap to JPG format and save it to the specified output file
-    private fun convertBitmapToJPG(inputFile: File, outputFile: File) {
+        val imageFile = File(directory, "JPEG_${timeStamp}.jpg")
+
         try {
-            val bitmap = BitmapFactory.decodeFile(inputFile.absolutePath)
-            val outputStream = FileOutputStream(outputFile)
+            // Save the bitmap to the directory
+            val outputStream: OutputStream = FileOutputStream(imageFile)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
             outputStream.flush()
             outputStream.close()
         } catch (e: IOException) {
             e.printStackTrace()
         }
+
+        return imageFile
     }
 }
