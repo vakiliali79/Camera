@@ -3,6 +3,7 @@ package ava.vakiliali79.solo
 import android.app.Application
 import android.graphics.Bitmap
 import android.os.Environment
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,8 +40,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Add a new photo to the list and save it to storage
     fun addPhoto(photo: File) {
         val currentPhotos = _photos.value.orEmpty().toMutableList()
-        currentPhotos.add(photo)
-        _photos.value = currentPhotos.reversed()
+        Log.e("TAG", "addPhoto: "+currentPhotos )
+        currentPhotos.add(0,photo)
+        _photos.value = currentPhotos
     }
 
     // Save the bitmap to a file with a timestamp in the app's external files directory
