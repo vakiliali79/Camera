@@ -25,19 +25,24 @@ This is a simple Android application written in Kotlin that allows users to capt
 
 - **Screenshot 3**:
 
-  ![Original Image](screenshots/3.jpg)
+  ![Original Image](screenshots/3.png)
 
 - **Screenshot 4**:
 
-  ![Original Image](screenshots/4.jpg)
+  ![Original Image](screenshots/4.png)
 
 - **Screenshot 5**:
 
-  ![Original Image](screenshots/5.jpg)
+  ![Original Image](screenshots/5.png)
 
 - **Screenshot 6**:
 
-  ![Original Image](screenshots/6.jpg)
+  ![Original Image](screenshots/6.png)
+
+  - **Screenshot 7**:
+
+  ![Original Image](screenshots/7.png)
+
 
 ## Usage
 
