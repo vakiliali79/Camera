@@ -1,6 +1,6 @@
 # PhotoCapture App
 
-This is a simple Android application written in Kotlin that allows users to capture photos, save them in a specified directory within the Downloads folder, and display the captured images on the main screen.
+This is a simple Android application written in Kotlin that allows users to capture photos, save them in a specified directory within the Downloads folder, and display the captured images on the main screen without the require permitions.
 
 ## Features
 
@@ -64,7 +64,3 @@ git clone https://github.com/vakiliali79/Camera.git
 ## Permissions
 
 This app does not request camera or storage permissions explicitly, as it aims to demonstrate capturing photos without permission requests. Note that this approach may not be suitable for production applications.
-
----
-
-Feel free to customize this README based on your project's specific details and requirements.
