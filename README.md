@@ -17,11 +17,11 @@ This is a simple Android application written in Kotlin that allows users to capt
 
 - **Screenshot 1**:
 
-  ![Original Image](screenshots/1.jpg)
+  ![Original Image](screenshots/1.png)
 
 - **Screenshot 2**:
 
-  ![Original Image](screenshots/2.jpg)
+  ![Original Image](screenshots/2.png)
 
 - **Screenshot 3**:
 
