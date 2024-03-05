@@ -66,23 +66,6 @@ class MainActivity : AppCompatActivity() {
     // Save the bitmap to a file with a timestamp in the app's external files directory
     private fun saveBitmap(bitmap: Bitmap): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir = File(application.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "photos")
-
-        if (!storageDir.exists()) {
-            storageDir.mkdirs()
-        }
-
-        var imageFile = File(storageDir, "JPEG_${timeStamp}.jpg")
-
-        try {
-            // Save the bitmap to the file
-            val stream: OutputStream = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.flush()
-            stream.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
 
         // Save a copy of the image to the Downloads/Captured photos directory
         val downloadDirectoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
@@ -91,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             directory.mkdirs()
         }
 
-        imageFile = File(directory, "JPEG_${timeStamp}.jpg")
+        val imageFile = File(directory, "JPEG_${timeStamp}.jpg")
 
         try {
             // Save the bitmap to the directory
